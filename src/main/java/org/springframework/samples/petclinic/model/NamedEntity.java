@@ -15,6 +15,11 @@
  */
 package org.springframework.samples.petclinic.model;
 
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
@@ -30,15 +35,16 @@ import javax.persistence.MappedSuperclass;
 public class NamedEntity extends BaseEntity {
 
     @Column(name = "name")
-    private String name;
+    @Getter @Setter private String name;
 
-    public String getName() {
+    //lombok
+    /*public String getName() {
         return this.name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
+    }*/
 
     @Override
     public String toString() {

@@ -15,6 +15,8 @@
  */
 package org.springframework.samples.petclinic.model;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -48,21 +50,21 @@ public class Pet extends NamedEntity {
 
     @Column(name = "birth_date")
     @DateTimeFormat(pattern = "yyyy/MM/dd")
-    private LocalDate birthDate;
+    @Getter @Setter private LocalDate birthDate;
 
     @ManyToOne
     @JoinColumn(name = "type_id")
-    private PetType type;
+    @Getter @Setter private PetType type;
 
     @ManyToOne
     @JoinColumn(name = "owner_id")
-    private Owner owner;
+    @Getter @Setter private Owner owner;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
     private Set<Visit> visits;
 
 
-    public void setBirthDate(LocalDate birthDate) {
+    /*public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -84,7 +86,7 @@ public class Pet extends NamedEntity {
 
     protected void setOwner(Owner owner) {
         this.owner = owner;
-    }
+    }*/
 
     protected Set<Visit> getVisitsInternal() {
         if (this.visits == null) {
